@@ -29,4 +29,6 @@ https://www.w3schools.com/xml/xpath_syntax.asp
 #CSS Selectors:
 https://www.w3schools.com/cssref/css_selectors.asp
 
-`Please note that import/export modules are available only after configuring babel and webPack _https://dev.to/alecgodwin/how-to-setup-webpack-and-babel-for-es6-dpk_(THIS PROJECT IS ALREADY SETUP TO SUPPORT MODULES)`
+`Please note that import/export modules are available only after configuring babel and webPack` 
+https://dev.to/alecgodwin/how-to-setup-webpack-and-babel-for-es6-dpk
+`(THIS PROJECT IS ALREADY SETUP TO SUPPORT MODULES)`
