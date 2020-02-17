@@ -23,4 +23,10 @@ _To change default timeout go to package.json => jest => testTimeout_
 #Headless mode:
 _If you want to run tests in headless mode you must to got to testfiles and set headless: true_
 
+#XPATH selectors:
+https://www.w3schools.com/xml/xpath_syntax.asp
+
+#CSS Selectors:
+https://www.w3schools.com/cssref/css_selectors.asp
+
 `Please note that import/export modules are available only after configuring babel and webPack https://dev.to/alecgodwin/how-to-setup-webpack-and-babel-for-es6-dpk(THIS PROJECT IS ALREADY SETUP TO SUPPORT MODULES)`
