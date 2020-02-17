@@ -7,7 +7,7 @@ https://developers.google.com/web/tools/puppeteer
 #run tests:
 _Open src/tests/{filename} => click run on describe or it level(describe level run all suite tests, it level run single test)_
 
-_To run all tests (for example in CI)  go to package.json scripts => test_
+_To run all tests in parallel (for example in CI)  go to package.json scripts => testParall. To run sequentially package.json scripts => testInOrder_
 
 _If you setup CI job don't forget to set CI=true otherwise tests will be run in watch mode_
 
