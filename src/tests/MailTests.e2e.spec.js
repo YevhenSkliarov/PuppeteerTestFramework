@@ -1,24 +1,22 @@
 import MailPage from '../Pages/MailPage';
 import puppeteer from 'puppeteer';
+import setup from "../utils/browser";
 
-let browser, page, wrapper, sel;
+let  wrapper;
 
 beforeEach(async () => {
-  browser = await puppeteer.launch({
+  let { browser, page } = await setup({
     headless: false,
-    // disables the default viewport
     defaultViewport: {
       width: 1920,
       height: 1080
     },
-    // Slows down Puppeteer operations by the specified amount of milliseconds.
     slowMo: 200
   });
-  page = await browser.newPage();
   wrapper = new MailPage(page, browser);
 });
 afterEach(async () => {
-  browser.close();
+  wrapper.browser.close();
 });
 
 describe('Mail tests', () => {

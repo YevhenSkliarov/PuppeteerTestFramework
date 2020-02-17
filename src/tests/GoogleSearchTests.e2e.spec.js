@@ -1,25 +1,23 @@
 import puppeteer from 'puppeteer';
 import GooglePage from '../Pages/GooglePage';
+import setup from '../utils/browser';
 
-let browser, page, wrapper, sel;
+let wrapper, sel;
 
 beforeEach(async () => {
-  browser = await puppeteer.launch({
+  let { browser, page } = await setup({
     headless: false,
-    // disables the default viewport
     defaultViewport: {
       width: 1920,
       height: 1080
     },
-    // Slows down Puppeteer operations by the specified amount of milliseconds.
     slowMo: 200
   });
-  page = await browser.newPage();
   wrapper = new GooglePage(page, browser);
   sel = wrapper.selectors;
 });
 afterEach(async () => {
-  browser.close();
+  wrapper.browser.close();
 });
 
 describe('Google Search', () => {
