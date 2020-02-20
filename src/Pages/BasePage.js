@@ -93,6 +93,7 @@ export default class Utils {
   }
 
   async forTextToBeGone(text) {
+    this.wait();
     try {
       await this.page.waitForFunction(
         `!document.querySelector("body").innerText.includes("${text}")`
