@@ -1,12 +1,8 @@
-import puppeteer from 'puppeteer';
-import selectors from '../selectors';
-
 export default class Utils {
   constructor(page, browser) {
-    this.appUrlBase = 'https://google.com';
+    this.appUrlBase = 'https://www.i.ua/';
     this.page = page;
     this.browser = browser;
-    this.selectors = selectors;
   }
 
   async pressKey({ key, times = 1 }) {
@@ -185,8 +181,8 @@ export default class Utils {
     await this.type(data.value);
   }
 
-  async openPage(url) {
-    await this.page.goto(url, { waitUntil: 'load', timeout: 0 });
+  async openPage() {
+    await this.page.goto(this.appUrlBase, { waitUntil: 'load', timeout: 0 });
   }
 
   async setUsername(name) {
@@ -196,5 +192,16 @@ export default class Utils {
 
   async setInput(selector, text) {
     await this.page.type(selector, text);
+  }
+
+  async click(selector) {
+    await this.page.click(selector);
+  }
+
+  async setTextInputValue(selector, value) {
+    const example = await this.page.$x(selector);
+    await example[0].click();
+    await this.page.keyboard.press('Backspace');
+    await example[0].type(value);
   }
 }
