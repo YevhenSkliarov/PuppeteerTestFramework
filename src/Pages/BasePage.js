@@ -7,20 +7,36 @@ export default class Utils {
 
   async getResponse(url, time = 5000) {
     let response = await this.page.waitForResponse(
-        async response => {
-          if (response.url === url) {
-            await response;
-          }
-        },
-        { timeout: time }
+      async response => {
+        if (response.url === url) {
+          await response;
+        }
+      },
+      { timeout: time }
     );
     return await response.json();
   }
 
+  async setResponse({ url, status = 200, responseBody } = {}) {
+    await this.page.setRequestInterception(true);
+    this.page.on('request', request => {
+      if (request.url() === url) {
+        request.respond({
+          status: status,
+          contentType: 'application/json; charset=utf-8',
+          body: JSON.stringify(responseBody)
+        });
+        this.page.removeAllListeners('request');
+      } else {
+        request.continue();
+      }
+    });
+  }
+
   async scrollTo(sel, top = true) {
     return await this.page.evaluate(
-        selector => document.querySelector(selector).scrollIntoView(top),
-        sel
+      selector => document.querySelector(selector).scrollIntoView(top),
+      sel
     );
   }
 
