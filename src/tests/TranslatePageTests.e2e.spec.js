@@ -6,11 +6,8 @@ let wrapper, sel;
 beforeEach(async () => {
   let { browser, page } = await setup({
     headless: false,
-    defaultViewport: {
-      width: 1920,
-      height: 1080
-    },
-    slowMo: 200
+    slowMo: 100,
+    args:['--start-maximized']
   });
   wrapper = new App(page, browser);
   sel = wrapper.selectors;

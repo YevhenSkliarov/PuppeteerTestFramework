@@ -5,6 +5,25 @@ export default class Utils {
     this.browser = browser;
   }
 
+  async getResponse(url, time = 5000) {
+    let response = await this.page.waitForResponse(
+        async response => {
+          if (response.url === url) {
+            await response;
+          }
+        },
+        { timeout: time }
+    );
+    return await response.json();
+  }
+
+  async scrollTo(sel, top = true) {
+    return await this.page.evaluate(
+        selector => document.querySelector(selector).scrollIntoView(top),
+        sel
+    );
+  }
+
   async pressKey({ key, times = 1 }) {
     Array.from({ length: times }).forEach(() => {
       this.page.keyboard.press(key);
@@ -15,7 +34,7 @@ export default class Utils {
     await this.page.keyboard.type(text);
   }
 
-  async forText(text, time = 20000) {
+  async forText(text, time = 10000) {
     try {
       await this.page.waitForFunction(
         `document.querySelector("body").innerText.includes("${text}")`,
@@ -204,5 +223,19 @@ export default class Utils {
     await example[0].click();
     await this.page.keyboard.press('Backspace');
     await example[0].type(value);
+  }
+
+  async waitForSelector(selector, options = {}) {
+    return await this.page.waitForSelector(selector, options);
+  }
+
+  async waitUntilFormIsReady() {
+    try {
+      await this.page.waitForSelector('.input.loading', {
+        hidden: true
+      });
+    } catch (err) {
+      throw new Error('LOVs have not been loaded in 30 seconds');
+    }
   }
 }

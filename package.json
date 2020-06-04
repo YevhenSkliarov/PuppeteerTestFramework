@@ -8,7 +8,7 @@
     "testInOrder": "jest --runInBand"
   },
   "jest": {
-    "testTimeout":30000
+    "testTimeout": 30000
   },
   "author": "",
   "license": "ISC",

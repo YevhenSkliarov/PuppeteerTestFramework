@@ -4,7 +4,8 @@ export default async function({
   headless = true,
   defaultViewport = null,
   slowMo = 0,
-  devtools = false
+  devtools = false,
+  args = []
 } = {}) {
   const browser = await puppeteer.launch({
     headless: headless,
@@ -13,7 +14,8 @@ export default async function({
     // Slows down Puppeteer operations by the specified amount of milliseconds.
     slowMo: slowMo,
     // Whether to auto-open a DevTools panel for each tab
-    devtools: devtools
+    devtools: devtools,
+    args
   });
   const page = await browser.newPage();
   return { browser, page };

@@ -7,11 +7,8 @@ let  wrapper;
 beforeEach(async () => {
   let { browser, page } = await setup({
     headless: false,
-    defaultViewport: {
-      width: 1920,
-      height: 1080
-    },
-    slowMo: 200
+    slowMo: 200,
+    args:['--start-maximized']
   });
   wrapper = new App(page,browser);
 });
@@ -24,7 +21,6 @@ describe('Mail tests', () => {
     await wrapper.home.openPage();
     await wrapper.home.forText('I.UA');
     await wrapper.home.login('puppeteer', 'puppeteer');
-    await wrapper.home.forTextToBeGone('Войти');
     expect(await wrapper.home.forText('Неверный логин или пароль')).toEqual(true);
   });
 });
