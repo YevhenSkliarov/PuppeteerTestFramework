@@ -17,6 +17,18 @@ export default class Utils {
     return await response.json();
   }
 
+  async getResponseUsingPageOn(url) {
+    return new Promise((resolve, reject) => {
+      this.page.on('response', async response => {
+        if (response.url() === url) {
+          resolve(await response.json());
+        } else {
+          reject(new Error(`No fallback response from ${url}`));
+        }
+      });
+    });
+  }
+
   async setResponse({ url, status = 200, responseBody } = {}) {
     await this.page.setRequestInterception(true);
     this.page.on('request', request => {
