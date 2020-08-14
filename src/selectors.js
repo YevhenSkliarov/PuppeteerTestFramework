@@ -7,5 +7,6 @@ export default {
     },
     translator:{
         transalateField:"div[class='form_item form_item-translate_result']"
-    }
+    },
+    errorArea:'.content.clear'
 };

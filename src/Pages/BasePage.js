@@ -6,15 +6,20 @@ export default class Utils {
   }
 
   async getResponse(url, time = 5000) {
-    let response = await this.page.waitForResponse(
-      async response => {
-        if (response.url === url) {
-          await response;
+    const finalResponse = await this.page.waitForResponse(response => response.url() === url, {
+      timeout: time
+    });
+    return await finalResponse.json();
+  }
+
+  async waitForResponse(url, time = 5000) {
+    const finalResponse = await this.page.waitForResponse(
+        response => response.url() === url && response.status() === 200,
+        {
+          timeout: time
         }
-      },
-      { timeout: time }
     );
-    return await response.json();
+    return finalResponse.ok();
   }
 
   async getResponseUsingPageOn(url) {
@@ -74,6 +79,13 @@ export default class Utils {
     } catch (error) {
       throw new Error(`Can't find "${text}" text on the page\n${error.stack}`);
     }
+  }
+
+  async getText(selector){
+    return await this.page.evaluate(sel=>
+       document.querySelector(sel).textContent
+    ,selector)
+
   }
 
   getUrl() {
@@ -218,10 +230,6 @@ export default class Utils {
     await this.page.click(`div[data-id="${id}"`);
     await this.page.waitFor(500);
     await this.page.click(`div[aria-label="${text}"]`);
-  }
-
-  async getText(selector) {
-    return await this.page.$eval(selector, e => e.innerText);
   }
 
   async enterInput(data) {

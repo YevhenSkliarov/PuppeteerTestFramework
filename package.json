@@ -7,9 +7,6 @@
     "testParall": "jest",
     "testInOrder": "jest --runInBand"
   },
-  "jest": {
-    "testTimeout": 30000
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -26,6 +23,7 @@
   "dependencies": {
     "@babel/runtime": "^7.8.4",
     "core-js": "^3.6.4",
+    "jest-junit": "^10.0.0",
     "puppeteer": "^2.1.1"
   }
 }
