@@ -20,7 +20,7 @@ describe('Mail tests', () => {
     await wrapper.home.openPage();
     await wrapper.home.forText('I.UA');
     await wrapper.home.login('puppeteer', 'puppeteer');
-    await wrapper.home.waitForSelector(wrapper.base.errorArea,{timeout:'5000'});
-    expect(await wrapper.home.getText(wrapper.base.errorArea)).toEqual("Неверный логин или пароль")
+    await wrapper.home.waitForSelector(wrapper.home.errorArea,{timeout:'5000'});
+    expect(await wrapper.home.getText(wrapper.home.errorArea)).toEqual("Неверный логин или пароль")
   });
 });
