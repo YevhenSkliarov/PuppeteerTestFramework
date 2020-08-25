@@ -20,11 +20,11 @@ describe('Translate', () => {
   it('Translate Word', async () => {
     await wrapper.home.openPage();
     await wrapper.home.forText('I.UA');
-    await wrapper.home.setTextInputValue(sel.iua.transale, 'Привет');
-    await wrapper.home.click(sel.iua.submitTranslate);
+    await wrapper.home.setTextInputValue(wrapper.home.transale, 'Привет');
+    await wrapper.home.click(wrapper.home.submitTranslate);
     await wrapper.home.wait(200);
     await wrapper.translate.forText('Переводчик онлайн');
-    expect(await wrapper.translate.getTextFromField(sel.translator.transalateField)).toEqual(
+    expect(await wrapper.translate.getTextFromField(wrapper.translate.transalateField)).toEqual(
       'Привіт'
     );
   });

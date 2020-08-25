@@ -5,6 +5,8 @@ export default class Utils {
     this.browser = browser;
   }
 
+  errorArea ='.content.clear';
+
   async getResponse(url, time = 5000) {
     const finalResponse = await this.page.waitForResponse(response => response.url() === url, {
       timeout: time

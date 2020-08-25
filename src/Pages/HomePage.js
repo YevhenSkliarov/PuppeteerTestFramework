@@ -1,15 +1,18 @@
 import BasePage from "./BasePage";
-import selectors from "../selectors"
 
 export default class HomePage extends BasePage{
     constructor(page, browser) {
         super(page, browser);
-        this.sel = selectors.iua;
     }
 
+    loginField = "//p[contains(text(),'Логин')]/following-sibling::p/input";
+    passwordField = "//p[contains(text(),'Пароль')]/following-sibling::input";
+    transale = "//textarea";
+    submitTranslate = "input[type='submit']";
+
     async login(login,password){
-        await this.setTextInputValue(this.sel.loginField,login);
-        await this.setTextInputValue(this.sel.passwordField,password);
+        await this.setTextInputValue(this.loginField,login);
+        await this.setTextInputValue(this.passwordField,password);
         await this.pressKey({key:'Enter'});
     }
 }
