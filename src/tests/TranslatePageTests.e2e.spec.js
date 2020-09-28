@@ -20,7 +20,7 @@ describe('Translate', () => {
   it('Translate Word', async () => {
     await wrapper.home.openPage();
     await wrapper.home.forText('I.UA');
-    await wrapper.home.setTextInputValue(wrapper.home.transale, 'Привет');
+    await wrapper.home.setTextInputValue(wrapper.home.translate, 'Привет');
     await wrapper.home.click(wrapper.home.submitTranslate);
     await wrapper.home.wait(200);
     await wrapper.translate.forText('Переводчик онлайн');

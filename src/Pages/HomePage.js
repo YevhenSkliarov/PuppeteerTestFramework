@@ -7,7 +7,7 @@ export default class HomePage extends BasePage{
 
     loginField = "//p[contains(text(),'Логин')]/following-sibling::p/input";
     passwordField = "//p[contains(text(),'Пароль')]/following-sibling::input";
-    transale = "//textarea";
+    translate = "//textarea";
     submitTranslate = "input[type='submit']";
 
     async login(login,password){
