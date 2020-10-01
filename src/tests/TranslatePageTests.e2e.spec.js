@@ -1,16 +1,14 @@
-import setup from '../utils/browser';
-import App from '../utils/App';
+import setup from '../utils/App';
 
-let wrapper, sel;
+let wrapper;
 
 beforeEach(async () => {
-  let { browser, page } = await setup({
+  wrapper = await setup({
     headless: false,
-    slowMo: 100,
-    args:['--start-maximized']
+    args: ['--start-maximized']
   });
-  wrapper = new App(page, browser);
-  sel = wrapper.selectors;
+  await wrapper.home.openPage();
+  await wrapper.home.forText('I.UA');
 });
 afterEach(async () => {
   wrapper.translate.browser.close();
@@ -18,8 +16,6 @@ afterEach(async () => {
 
 describe('Translate', () => {
   it('Translate Word', async () => {
-    await wrapper.home.openPage();
-    await wrapper.home.forText('I.UA');
     await wrapper.home.setTextInputValue(wrapper.home.translate, 'Привет');
     await wrapper.home.click(wrapper.home.submitTranslate);
     await wrapper.home.wait(200);

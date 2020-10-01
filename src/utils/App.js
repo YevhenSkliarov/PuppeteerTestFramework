@@ -1,12 +1,19 @@
-import BasePage from "../Pages/BasePage";
-import HomePage from "../Pages/HomePage";
-import TranslatePage from "../Pages/TranslatePage";
+import setup from '../utils/browser';
+import AppFactory from '../utils/AppFactory';
 
-
-export default class App {
-    constructor(page,browser) {
-        this.base = new BasePage(page, browser);
-        this.home = new HomePage(page, browser);
-        this.translate = new TranslatePage(page, browser);
-    }
-}
+export default async ({
+  headless = true,
+  defaultViewport = null,
+  slowMo = 0,
+  devtools = false,
+  args = []
+} = {}) => {
+  let { browser, page } = await setup({
+    headless: headless,
+    args: args,
+    devtools: devtools,
+    slowMo: slowMo,
+    defaultViewport: defaultViewport
+  });
+  return new AppFactory(page, browser);
+};
