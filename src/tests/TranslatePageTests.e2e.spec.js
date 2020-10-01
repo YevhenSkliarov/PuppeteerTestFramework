@@ -18,8 +18,7 @@ describe('Translate', () => {
   it('Translate Word', async () => {
     await wrapper.home.setTextInputValue(wrapper.home.translate, 'Привет');
     await wrapper.home.click(wrapper.home.submitTranslate);
-    await wrapper.home.wait(200);
-    await wrapper.translate.forText('Переводчик онлайн');
+    await wrapper.translate.waitForSelector(wrapper.translate.transalateField,{timeout:5000});
     expect(await wrapper.translate.getTextFromField(wrapper.translate.transalateField)).toEqual(
       'Привіт'
     );
